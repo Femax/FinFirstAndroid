@@ -44,4 +44,8 @@ public class RestClient {
     public Observable<User> guestLogin(String name, String age, String imei) {
         return apiService.guestLogin(new GuestLoginJson(imei, name, age));
     }
+
+    public void getPortfolios(String userId) {
+        return apiService.getPorfolios(userId);
+    }
 }

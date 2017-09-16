@@ -19,6 +19,8 @@
     <string name="name_edit_text_hint">Имя</string>
     <string name="age_edit_text_hint">Возраст</string>
     <string name="send_age_name_button">Отправить</string>
+    <string name="create_portfolio">+</string>
+    <string name="change_procent">%</string>
 
 
 </resources>

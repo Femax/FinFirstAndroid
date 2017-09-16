@@ -1,5 +1,6 @@
 package ru.fedosov.opengifityhack.ui.presenter;
 
+import ru.fedosov.opengifityhack.client.RestClient;
 import ru.fedosov.opengifityhack.ui.view.GuestLoginView;
 import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
 
@@ -14,6 +15,6 @@ public class PortfolioListPresenter {
     }
 
     public void getPortfolios() {
-
+        RestClient.getInstance().getPortfolios();
     }
 }
