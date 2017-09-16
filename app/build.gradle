@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File("./", output.outputFile.name)
+        }
+    }
 }
 
 ext {
@@ -27,6 +32,8 @@ ext {
     googlePlayVersion = '9.0.1'
     icepickVersion = '3.2.0'
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
