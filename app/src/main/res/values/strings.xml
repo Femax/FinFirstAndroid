@@ -2,6 +2,10 @@
     <string name="app_name">opengifityhack</string>
 
 
+    <!--Preferences-->
+    <string name="pref_user_id">pref_user_id</string>
+
+
     <!--LoginActivity Fields-->
     <string name="login_password_hint">Пароль</string>
     <string name="login_user_name_hint">Логин</string>
@@ -14,13 +18,26 @@
     <string name="error_field_required">Поле  логин не должно быть пустым</string>
     <string name="error_invalid_password">поле пароль не должно быть пустым</string>
     <string name="start_text_guest_login">Привет, я робот-советник./n Чтобы составить Ваш первый инвестиционный портфель, необходимо узнать о Вас немного информации :)</string>
+
+
+    <!--GuestLogin Fields-->
     <string name="how_much_old_are_u">Сколько Вам лет?</string>
     <string name="what_is_your_name">Как Вас зовут?</string>
     <string name="name_edit_text_hint">Имя</string>
     <string name="age_edit_text_hint">Возраст</string>
     <string name="send_age_name_button">Отправить</string>
+
+
+    <!--PortfolioListActivity Fields-->
     <string name="create_portfolio">+</string>
     <string name="change_procent">%</string>
+
+    <!--NewPortfolioActivity Fields-->
+    <string name="activity_new_portfolio_title">Инвестиции всегда связаны с риском, чем выше доходность , тем большую часть от капитала Вы рискуете потерять</string>
+    <string name="title_active_visible_checkbox">Отоброжать только безрисковые активы?</string>
+    <string name="chose_investments_duration">На какой период планируе инвестировать?</string>
+    <string name="chose_investments_hint">Лет</string>
+    <string name="degree_risk_title">Какую степень риска вы предпочитаете?</string>
 
 
 </resources>

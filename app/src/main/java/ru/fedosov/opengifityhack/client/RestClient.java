@@ -1,9 +1,13 @@
 package ru.fedosov.opengifityhack.client;
 
+import java.util.List;
+
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.fedosov.opengifityhack.client.model.GuestLoginJson;
+import ru.fedosov.opengifityhack.client.model.Portfolio;
 import rx.Observable;
 
 public class RestClient {
@@ -37,15 +41,19 @@ public class RestClient {
         return Observable.just(new User());
     }
 
-    public Observable<User> getUsers() {
+    public Observable<Response<User>> getUsers() {
         return apiService.getUsers("asdsad");
     }
 
-    public Observable<User> guestLogin(String name, String age, String imei) {
+    public Observable<Response<User>> guestLogin(String name, String age, String imei) {
         return apiService.guestLogin(new GuestLoginJson(imei, name, age));
     }
 
-    public void getPortfolios(String userId) {
+    public Observable<Response<List<Portfolio>>> getPortfolios(String userId) {
         return apiService.getPorfolios(userId);
+    }
+
+    public Observable<Response<String>> createPortfolio() {
+        return apiService.createPortfolio();
     }
 }

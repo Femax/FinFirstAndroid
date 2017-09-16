@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,6 +44,11 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
     public void onGetPortfoioResult(List<Portfolio> portfolios) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new PorfolioAdapter(portfolios));
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private class PorfolioAdapter extends RecyclerView.Adapter {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/activity_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="@string/activity_new_portfolio_title"
+        android:textAlignment="center"
+        android:textColor="@color/primary" />
+
+    <TextView
+        android:id="@+id/active_title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_title"
+        android:layout_marginLeft="32dp"
+        android:text="@string/title_active_visible_checkbox"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/active_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/activity_title"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/active_title" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/active_title"
+        android:layout_marginTop="16dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/chose_investments_duration_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/chose_investments_duration"
+        android:textSize="18sp" />
+
+    <SeekBar
+        android:id="@+id/chose_investments_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chose_investments_duration_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/degree_risk_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chose_investments_duration"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/degree_risk_title"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/degree_risk_title"
+        android:padding="32dp"
+        android:orientation="vertical">
+
+        <CheckedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Консервативный" />
+
+        <CheckedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Оптимальный" />
+
+        <CheckedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Рискованый" />
+
+    </LinearLayout>
+
+</RelativeLayout>

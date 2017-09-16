@@ -1,9 +1,12 @@
 package ru.fedosov.opengifityhack.ui.presenter;
 
+import android.widget.Toast;
+
 import com.arellomobile.mvp.InjectViewState;
 
 import java.util.concurrent.TimeUnit;
 
+import retrofit2.Response;
 import ru.fedosov.opengifityhack.client.RestClient;
 import ru.fedosov.opengifityhack.client.User;
 import ru.fedosov.opengifityhack.ui.view.GuestLoginView;
@@ -26,7 +29,7 @@ public class GuestLoginPresenter {
         RestClient.getInstance().guestLogin(name, age, imei)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<User>() {
+                .subscribe(new Subscriber<Response<User>>() {
                     @Override
                     public void onCompleted() {
 
@@ -38,8 +41,8 @@ public class GuestLoginPresenter {
                     }
 
                     @Override
-                    public void onNext(User user) {
-                        mGuestLoginView.onGuestLoginResult(user!=null);
+                    public void onNext(Response<User> userResponse) {
+                        mGuestLoginView.onGuestLoginResult(userResponse.isSuccessful());
                     }
                 });
     }

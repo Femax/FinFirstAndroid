@@ -9,6 +9,8 @@ import ru.fedosov.opengifityhack.client.model.Portfolio;
 /**
  * Created by Максим on 16.09.2017.
  */
-public interface PortfolioListView extends MvpView {
+public interface PortfolioListView {
     public void onGetPortfoioResult(List<Portfolio> portfolios);
+
+    void showError(String message);
 }
