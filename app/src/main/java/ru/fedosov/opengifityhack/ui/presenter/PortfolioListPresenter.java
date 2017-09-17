@@ -7,6 +7,7 @@ import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.client.RestClient;
 import ru.fedosov.opengifityhack.client.User;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
+import ru.fedosov.opengifityhack.client.model.UsdCurrency;
 import ru.fedosov.opengifityhack.ui.view.GuestLoginView;
 import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
 import ru.fedosov.opengifityhack.utils.PrefUtils;
@@ -44,4 +45,25 @@ public class PortfolioListPresenter {
     }
 
 
+    public void getCurrency() {
+        RestClient.getInstance().getCurrency()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UsdCurrency>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mPortfolioListView.showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(UsdCurrency usdCurrency) {
+                        mPortfolioListView.onGetCurrency(usdCurrency.getValue());
+                    }
+                });
+    }
 }

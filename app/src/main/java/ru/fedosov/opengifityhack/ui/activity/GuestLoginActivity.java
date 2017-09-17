@@ -54,6 +54,7 @@ public class GuestLoginActivity extends AppCompatActivity implements GuestLoginV
         if (userId != null) {
             PrefUtils.putStringSync(R.string.pref_user_id, userId);
             startActivity(new Intent(this, PortfolioListActivity.class));
+            finish();
         }
     }
 

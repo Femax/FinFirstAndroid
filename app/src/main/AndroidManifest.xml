@@ -23,6 +23,7 @@
         <activity android:name=".ui.activity.GuestLoginActivity" />
         <activity android:name=".ui.activity.PortfolioListActivity"/>
         <activity android:name=".ui.activity.CreatePortfolioActivity"/>
+        <activity android:name=".ui.activity.DetailPortfolio"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package ru.fedosov.opengifityhack.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,12 +19,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.client.model.AttrCreatePortfolio;
+import ru.fedosov.opengifityhack.client.model.Portfolio;
 import ru.fedosov.opengifityhack.ui.presenter.CreatePortfolioPresenter;
+import ru.fedosov.opengifityhack.ui.presenter.PortfolioDetailsPresenter;
 import ru.fedosov.opengifityhack.ui.view.CreatePortfolioView;
+import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
 import ru.fedosov.opengifityhack.utils.PrefUtils;
 
 public class CreatePortfolioActivity extends AppCompatActivity implements CreatePortfolioView {
 
+    public Boolean currencyTypeUsd = true;
 
     @Bind(R.id.portfolio_name)
     EditText mPortfolioName;
@@ -43,6 +48,7 @@ public class CreatePortfolioActivity extends AppCompatActivity implements Create
     Button mSendButton;
 
     CreatePortfolioPresenter mCreatePortfolioPresenter;
+    private ProgressDialog mProgresDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,9 +62,10 @@ public class CreatePortfolioActivity extends AppCompatActivity implements Create
 
     @OnClick(R.id.send_button)
     public void onSend() {
+
         AttrCreatePortfolio attrCreatePortfolio = new AttrCreatePortfolio();
-        attrCreatePortfolio.setAccountType(mActiveSwitch.isActivated());
-        attrCreatePortfolio.setCurrency(mCurrency.isActivated() ? "usd" : "rub");
+        attrCreatePortfolio.setAccountType(mActiveSwitch.isChecked());
+        attrCreatePortfolio.setCurrency(mCurrency.isChecked() ? "usd" : "rub");
         attrCreatePortfolio.setPeriod(3);
         attrCreatePortfolio.setId(PrefUtils.getString(R.string.pref_user_id));
         attrCreatePortfolio.setPortfelName(mPortfolioName.getText().toString());
@@ -66,6 +73,13 @@ public class CreatePortfolioActivity extends AppCompatActivity implements Create
                 mOptimalCheck.isChecked() ? 0.5 :
                         mRiskyCheck.isChecked() ? 0.8 : 0.0);
         mCreatePortfolioPresenter.createPortfolio(attrCreatePortfolio);
+        showProgressDialog();
+    }
+
+    public void showProgressDialog() {
+        mProgresDialog = new ProgressDialog(this);
+        mProgresDialog.setMessage(getString(R.string.on_create_portfolio_message));
+        mProgresDialog.show();
     }
 
     private void initBehavior() {
@@ -106,7 +120,8 @@ public class CreatePortfolioActivity extends AppCompatActivity implements Create
 
     @Override
     public void onCreateResult(boolean success) {
-        startActivity(new Intent(this, PortfolioDetailsActivity.class));
+        mProgresDialog.dismiss();
+        startActivity(new Intent(this, PortfolioListActivity.class));
     }
 
     @Override

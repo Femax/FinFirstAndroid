@@ -20,8 +20,7 @@ import ru.fedosov.opengifityhack.ui.view.PortfolioDetailsView;
 
 public class PortfolioDetailsActivity extends AppCompatActivity implements PortfolioDetailsView {
 
-    @Bind(R.id.portfolio_details)
-    RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

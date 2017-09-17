@@ -17,6 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.fedosov.opengifityhack.R;
+import ru.fedosov.opengifityhack.client.RestClient;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
 import ru.fedosov.opengifityhack.ui.presenter.PortfolioListPresenter;
 import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
@@ -27,8 +28,13 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
+    @Bind(R.id.change_balance_button_text)
+    TextView mBalanceButtonText;
 
     PortfolioListPresenter mPortfolioPresenter;
+    private PorfolioAdapter mPortfoliosAdapter;
+
+    private boolean isBalanceRub = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +46,40 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
 
     @OnClick(R.id.add_portfolio)
     public void createPortfolio() {
-        startActivity(new Intent(this,CreatePortfolioActivity.class));
+        startActivity(new Intent(this, CreatePortfolioActivity.class));
+        finish();
     }
 
     @OnClick(R.id.change_balance)
     public void changeBlance() {
-
+        mPortfolioPresenter.getCurrency();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        mBalanceButtonText.setText(isBalanceRub ? getString(R.string.rub) : getString(R.string.usd));
         mPortfolioPresenter.getPortfolios(PrefUtils.getString(R.string.pref_user_id));
     }
 
 
     public void onGetPortfoioResult(List<Portfolio> portfolios) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PorfolioAdapter(portfolios));
-        Toast.makeText(this, R.string.no_portfolio_message, Toast.LENGTH_SHORT).show();
+        mPortfoliosAdapter = new PorfolioAdapter(portfolios);
+        recyclerView.setAdapter(mPortfoliosAdapter);
+        if (portfolios.size() == 0)
+            Toast.makeText(this, R.string.no_portfolio_message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetCurrency(Double currency) {
+        mPortfoliosAdapter.updateBalance(currency);
+        mBalanceButtonText.setText(isBalanceRub ? getString(R.string.rub) : getString(R.string.usd));
     }
 
     private class PorfolioAdapter extends RecyclerView.Adapter {
@@ -82,11 +98,28 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             ((PortfolioViewHolder) holder).applyData(portfolios.get(position));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(),DetailPortfolio.class));
+                }
+            });
         }
 
         @Override
         public int getItemCount() {
             return portfolios.size();
+        }
+
+        public void updateBalance(Double currency) {
+            for (Portfolio i : portfolios) {
+                if (isBalanceRub)
+                    i.setRealBalance(Math.round(Double.parseDouble(i.getRealBalance()) / currency) + "");
+                else
+                    i.setRealBalance(Math.round(Double.parseDouble(i.getRealBalance()) * currency) + "");
+            }
+            isBalanceRub = !isBalanceRub;
+            notifyDataSetChanged();
         }
     }
 
@@ -108,7 +141,8 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
         public void applyData(Portfolio portfolio) {
             name.setText(portfolio.getName());
             account.setText(portfolio.getType() ? "" : getString(R.string.demo_account));
-            realBalance.setText(portfolio.getRealBalance());
+            realBalance.setText(isBalanceRub ? getString(R.string.balanceRuType, Double.parseDouble(portfolio.getRealBalance()))
+                    : getString(R.string.balanceUsdType, Double.parseDouble(portfolio.getRealBalance())));
         }
     }
 

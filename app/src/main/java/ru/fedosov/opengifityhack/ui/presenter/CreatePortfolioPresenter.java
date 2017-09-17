@@ -31,7 +31,7 @@ public class CreatePortfolioPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mNewPortfolioPresenter.showError(e.getMessage());
+                        mNewPortfolioPresenter.onCreateResult(true);
                     }
 
                     @Override

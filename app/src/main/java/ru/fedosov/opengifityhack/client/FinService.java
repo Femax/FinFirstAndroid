@@ -1,5 +1,6 @@
 package ru.fedosov.opengifityhack.client;
 
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import retrofit2.http.Query;
 import ru.fedosov.opengifityhack.client.model.AttrCreatePortfolio;
 import ru.fedosov.opengifityhack.client.model.GuestLogin;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
+import ru.fedosov.opengifityhack.client.model.UsdCurrency;
 import rx.Observable;
 
 public interface FinService {
@@ -27,6 +29,10 @@ public interface FinService {
 
     @GET("/api/getAllPortfels/{userId}")
     Observable<Response<List<Portfolio>>> getPorfolios(@Path("userId") String userId);
+
     @POST("/api/setPortfel/")
     Observable<Response<String>> createPortfolio(@Body AttrCreatePortfolio portfolio);
+
+    @GET("/api/getCurrency")
+    Observable<UsdCurrency> getCurrency();
 }

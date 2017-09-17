@@ -10,4 +10,6 @@ public interface PortfolioListView {
     public void onGetPortfoioResult(List<Portfolio> portfolios);
 
     void showError(String message);
+
+    void onGetCurrency(Double currency);
 }

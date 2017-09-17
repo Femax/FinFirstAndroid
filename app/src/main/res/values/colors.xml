@@ -13,4 +13,5 @@
     <color name="divider">#BDBDBD</color>
     <color name="buttonColor" >#fff</color>
     <color name="percentNegativeColor">#ff0000</color>
+    <color name="percentPositiveColor">#0000ff</color>
 </resources>

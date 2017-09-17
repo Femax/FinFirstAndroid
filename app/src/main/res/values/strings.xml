@@ -46,5 +46,11 @@
     <string name="negative_answer">Н</string>
     <string name="currency_title">Выберите валюту USD/RUB</string>
 
+    <string name="balanceUsdType">%f$</string>
+    <string name="balanceRuType">%f₽</string>
+
+    <string name="usd">$</string>
+    <string name="rub">₽</string>
+    <string name="on_create_portfolio_message">Создаем портфель, пожалуйста подождите...</string>
 
 </resources>

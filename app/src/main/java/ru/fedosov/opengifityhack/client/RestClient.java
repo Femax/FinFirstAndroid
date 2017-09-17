@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import ru.fedosov.opengifityhack.client.model.AttrCreatePortfolio;
 import ru.fedosov.opengifityhack.client.model.GuestLogin;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
+import ru.fedosov.opengifityhack.client.model.UsdCurrency;
 import rx.Observable;
 
 public class RestClient {
@@ -62,5 +63,10 @@ public class RestClient {
 
     public Observable<Response<User>> getUser(String imei) {
         return apiService.getUser(imei);
+    }
+
+
+    public Observable<UsdCurrency> getCurrency() {
+        return apiService.getCurrency();
     }
 }
