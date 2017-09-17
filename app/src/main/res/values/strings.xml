@@ -38,6 +38,7 @@
     <string name="chose_investments_duration">На какой период планируе инвестировать?</string>
     <string name="chose_investments_hint">Лет</string>
     <string name="degree_risk_title">Какую степень риска вы предпочитаете?</string>
+    <string name="demo_account">Демо</string>
 
 
 </resources>

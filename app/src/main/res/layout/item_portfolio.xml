@@ -25,7 +25,7 @@
         tools:text="Demo" />
 
     <TextView
-        android:id="@+id/percent"
+        android:id="@+id/realBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

@@ -2,6 +2,8 @@ package ru.fedosov.opengifityhack.client;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -16,15 +18,20 @@ public class RestClient {
     private static RestClient instance;
 
     private RestClient() {
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.136:8081/")
+                .client(getClient())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-
                 .build();
 
         apiService = retrofit.create(FinService.class);
+    }
+
+    public OkHttpClient getClient() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return new OkHttpClient.Builder().addInterceptor(interceptor).build();
     }
 
     public static RestClient getInstance() {

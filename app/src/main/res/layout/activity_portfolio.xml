@@ -10,6 +10,7 @@
         android:layout_height="match_parent" />
 
     <FrameLayout
+        android:id="@+id/change_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,6 +36,7 @@
 
 
     <FrameLayout
+        android:id="@+id/add_portfolio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

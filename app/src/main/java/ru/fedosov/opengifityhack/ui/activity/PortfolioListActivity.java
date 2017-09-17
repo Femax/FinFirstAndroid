@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
 import ru.fedosov.opengifityhack.ui.presenter.PortfolioListPresenter;
@@ -32,6 +33,16 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
         ButterKnife.bind(this);
         mPortfolioPresenter = new PortfolioListPresenter(this);
         mPortfolioPresenter.getPortfolios();
+    }
+
+    @OnClick(R.id.add_portfolio)
+    public void createPortfolio() {
+
+    }
+
+    @OnClick(R.id.change_balance)
+    public void changeBlance() {
+
     }
 
     @Override
@@ -81,8 +92,8 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
         TextView name;
         @Bind(R.id.account)
         TextView account;
-        @Bind(R.id.percent)
-        TextView percent;
+        @Bind(R.id.realBalance)
+        TextView realBalance;
 
 
         public PortfolioViewHolder(View view) {
@@ -90,14 +101,10 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
             ButterKnife.bind(this, view);
         }
 
-        public void applyData(String text, String account, String percent) {
-            name.setText(text);
-            name.setText(text);
-            name.setText(text);
-        }
-
         public void applyData(Portfolio portfolio) {
-
+            name.setText(portfolio.getName());
+            account.setText(portfolio.getType() ? "" : getString(R.string.demo_account));
+            realBalance.setText(portfolio.getRealBalance());
         }
     }
 
