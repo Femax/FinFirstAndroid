@@ -17,4 +17,5 @@ Dillinger uses a number of open source projects to work properly:
 * [Butterknife](http://jakewharton.github.io/butterknife/) - Альтернатива стандартным иньекциям android.
 * [Rx-java](https://github.com/ReactiveX/RxJava) - Библиотека для программирования в реактивном стиле на языке java.
 * [Retrofit](http://square.github.io/retrofit/) - HTTP-клиент для Android.
+FinFirst server side https://github.com/VKapicyn/FinFirst
 
