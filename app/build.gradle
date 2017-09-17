@@ -22,7 +22,7 @@ android {
     }
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
-            output.outputFile = new File("./", output.outputFile.name)
+            output.outputFile = new File(".//", output.outputFile.name)
         }
     }
 }
@@ -47,6 +47,7 @@ dependencies {
     compile "com.google.android.gms:play-services-auth:${googlePlayVersion}"
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
     compile 'com.squareup.okio:okio:1.10.0'
@@ -62,6 +63,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+
+    //log
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     testCompile 'junit:junit:4.12'
 }

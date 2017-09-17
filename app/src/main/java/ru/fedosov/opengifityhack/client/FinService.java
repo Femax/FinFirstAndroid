@@ -8,7 +8,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import ru.fedosov.opengifityhack.client.model.GuestLoginJson;
+import ru.fedosov.opengifityhack.client.model.GuestLogin;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
 import rx.Observable;
 
@@ -21,7 +21,7 @@ public interface FinService {
     rx.Observable<Response<User>> getUsers(@Query("imei") String imei);
 
     @POST("/api/setUser")
-    Observable<Response<User>> guestLogin(@Body GuestLoginJson body);
+    Observable<Response<User>> guestLogin(@Body GuestLogin body);
 
     Observable<Response<List<Portfolio>>> getPorfolios(@Query("") String userId);
 

@@ -22,8 +22,6 @@ import ru.fedosov.opengifityhack.ui.presenter.GuestLoginPresenter;
 import ru.fedosov.opengifityhack.ui.view.GuestLoginView;
 import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
 
-
-
 public class GuestLoginActivity extends AppCompatActivity implements GuestLoginView {
 
     @Bind(R.id.name_field)
@@ -32,6 +30,7 @@ public class GuestLoginActivity extends AppCompatActivity implements GuestLoginV
     EditText mAgeEditText;
     @Bind(R.id.send_button)
     Button mSighInButton;
+
     GuestLoginPresenter mGuestLoginPresenter;
 
     @Override

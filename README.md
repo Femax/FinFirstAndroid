@@ -15,6 +15,6 @@ Dillinger uses a number of open source projects to work properly:
 
 * [Android Sdk](https://developer.android.com/studio/index.html) - универсальное средство разработки мобильных приложений для операционной системы Android.
 * [Butterknife](http://jakewharton.github.io/butterknife/) - Альтернатива стандартным иньекциям android.
-* [Rx-java](https://github.com/ReactiveX/RxJava) - Библиотека для программирования в стиле п программирования, ориентированная на потоки данных и распространение изменений.
+* [Rx-java](https://github.com/ReactiveX/RxJava) - Библиотека для программирования в реактивном стиле на языке java.
 * [Retrofit](http://square.github.io/retrofit/) - HTTP-клиент для Android.
 

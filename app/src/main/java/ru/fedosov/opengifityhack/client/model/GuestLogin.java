@@ -4,13 +4,13 @@ package ru.fedosov.opengifityhack.client.model;
  * Created by Максим on 16.09.2017.
  */
 
-public class GuestLoginJson {
+public class GuestLogin {
 
     private String imei;
     private String name;
     private String age;
 
-    public GuestLoginJson(String imei, String name, String age) {
+    public GuestLogin(String imei, String name, String age) {
         this.imei = imei;
         this.name = name;
         this.age = age;

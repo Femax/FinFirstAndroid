@@ -74,9 +74,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/degree_risk_title"
         android:padding="32dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@+id/chose_investments_duration"
+        android:layout_alignEnd="@+id/active_title">
 
         <CheckedTextView
             android:layout_width="wrap_content"

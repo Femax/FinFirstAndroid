@@ -18,9 +18,6 @@ import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.client.model.History;
 import ru.fedosov.opengifityhack.ui.view.PortfolioDetailsView;
 
-/**
- * Created by Максим on 17.09.2017.
- */
 public class PortfolioDetailsActivity extends AppCompatActivity implements PortfolioDetailsView {
 
     @Bind(R.id.portfolio_details)
@@ -30,6 +27,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity implements Portf
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portfolio_details);
+        ButterKnife.bind(this);
     }
 
     private class HistoryAdapter extends RecyclerView.Adapter {

@@ -11,12 +11,7 @@ import ru.fedosov.opengifityhack.client.model.Portfolio;
 import ru.fedosov.opengifityhack.ui.view.LoginView;
 import ru.fedosov.opengifityhack.ui.view.NewPortfolioView;
 
-/**
- * Created by Максим on 16.09.2017.
- */
-
 public class NewPortfolioActivity extends AppCompatActivity implements NewPortfolioView {
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

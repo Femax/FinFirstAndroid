@@ -14,10 +14,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by Максим on 16.09.2017.
- */
-@InjectViewState
 public class GuestLoginPresenter {
     private GuestLoginView mGuestLoginView;
 
