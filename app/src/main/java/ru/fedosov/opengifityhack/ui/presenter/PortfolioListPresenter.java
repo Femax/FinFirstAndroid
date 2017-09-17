@@ -21,8 +21,8 @@ public class PortfolioListPresenter {
         this.mPortfolioListView = portfolioListView;
     }
 
-    public void getPortfolios() {
-        RestClient.getInstance().getPortfolios(PrefUtils.getString(R.string.pref_user_id))
+    public void getPortfolios(String userId) {
+        RestClient.getInstance().getPortfolios(userId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<List<Portfolio>>>() {
@@ -42,4 +42,6 @@ public class PortfolioListPresenter {
                     }
                 });
     }
+
+
 }

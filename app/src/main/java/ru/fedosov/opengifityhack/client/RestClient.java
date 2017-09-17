@@ -8,6 +8,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.fedosov.opengifityhack.client.model.AttrCreatePortfolio;
 import ru.fedosov.opengifityhack.client.model.GuestLogin;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
 import rx.Observable;
@@ -19,8 +20,8 @@ public class RestClient {
 
     private RestClient() {
         Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.136:8081")
                 .client(getClient())
-                .baseUrl("http://192.168.0.136:8081/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -44,7 +45,7 @@ public class RestClient {
 
 
     public Observable<Response<User>> getUsers() {
-        return apiService.getUsers("asdsad");
+        return apiService.getUser("asdsad");
     }
 
     public Observable<Response<User>> guestLogin(String name, String age, String imei) {
@@ -55,7 +56,11 @@ public class RestClient {
         return apiService.getPorfolios(userId);
     }
 
-    public Observable<Response<String>> createPortfolio() {
-        return apiService.createPortfolio();
+    public Observable<Response<String>> createPortfolio(AttrCreatePortfolio portfolio) {
+        return apiService.createPortfolio(portfolio);
+    }
+
+    public Observable<Response<User>> getUser(String imei) {
+        return apiService.getUser(imei);
     }
 }

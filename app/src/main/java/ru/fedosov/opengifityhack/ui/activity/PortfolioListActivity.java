@@ -1,5 +1,6 @@
 package ru.fedosov.opengifityhack.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,12 +20,15 @@ import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.client.model.Portfolio;
 import ru.fedosov.opengifityhack.ui.presenter.PortfolioListPresenter;
 import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
+import ru.fedosov.opengifityhack.utils.PrefUtils;
 
 public class PortfolioListActivity extends AppCompatActivity implements PortfolioListView {
 
-    PortfolioListPresenter mPortfolioPresenter;
+
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    PortfolioListPresenter mPortfolioPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +36,11 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
         setContentView(R.layout.activity_portfolio);
         ButterKnife.bind(this);
         mPortfolioPresenter = new PortfolioListPresenter(this);
-        mPortfolioPresenter.getPortfolios();
     }
 
     @OnClick(R.id.add_portfolio)
     public void createPortfolio() {
-
+        startActivity(new Intent(this,CreatePortfolioActivity.class));
     }
 
     @OnClick(R.id.change_balance)
@@ -48,13 +51,14 @@ public class PortfolioListActivity extends AppCompatActivity implements Portfoli
     @Override
     protected void onStart() {
         super.onStart();
-        mPortfolioPresenter.getPortfolios();
+        mPortfolioPresenter.getPortfolios(PrefUtils.getString(R.string.pref_user_id));
     }
 
 
     public void onGetPortfoioResult(List<Portfolio> portfolios) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new PorfolioAdapter(portfolios));
+        Toast.makeText(this, R.string.no_portfolio_message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

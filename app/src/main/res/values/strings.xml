@@ -32,13 +32,19 @@
     <string name="create_portfolio">+</string>
     <string name="change_procent">%</string>
 
-    <!--NewPortfolioActivity Fields-->
+    <!--CreatePortfolioActivity Fields-->
     <string name="activity_new_portfolio_title">Инвестиции всегда связаны с риском, чем выше доходность , тем большую часть от капитала Вы рискуете потерять</string>
     <string name="title_active_visible_checkbox">Отоброжать только безрисковые активы?</string>
     <string name="chose_investments_duration">На какой период планируе инвестировать?</string>
     <string name="chose_investments_hint">Лет</string>
     <string name="degree_risk_title">Какую степень риска вы предпочитаете?</string>
     <string name="demo_account">Демо</string>
+    <string name="no_portfolio_message">У вас нет ни одного портфеля, нажмите на + для создания нового</string>
+    <string name="porfolio_name">Название портфеля</string>
+
+    <string name="postitive_answer">Д</string>
+    <string name="negative_answer">Н</string>
+    <string name="currency_title">Выберите валюту USD/RUB</string>
 
 
 </resources>

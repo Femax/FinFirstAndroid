@@ -10,17 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.PresenterType;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import ru.fedosov.opengifityhack.R;
 import ru.fedosov.opengifityhack.ui.presenter.GuestLoginPresenter;
 import ru.fedosov.opengifityhack.ui.view.GuestLoginView;
-import ru.fedosov.opengifityhack.ui.view.PortfolioListView;
+import ru.fedosov.opengifityhack.utils.PrefUtils;
 
 public class GuestLoginActivity extends AppCompatActivity implements GuestLoginView {
 
@@ -51,12 +46,13 @@ public class GuestLoginActivity extends AppCompatActivity implements GuestLoginV
     public void onGuestLogin() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mGuestLoginPresenter.guestLogin(mNameEditText.getText().toString()
-                ,mAgeEditText.getText().toString(),
+                , mAgeEditText.getText().toString(),
                 telephonyManager.getDeviceId());
     }
 
-    public void onGuestLoginResult(boolean success) {
-        if (success) {
+    public void onGuestLoginResult(String userId) {
+        if (userId != null) {
+            PrefUtils.putStringSync(R.string.pref_user_id, userId);
             startActivity(new Intent(this, PortfolioListActivity.class));
         }
     }

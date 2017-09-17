@@ -74,7 +74,5 @@ public class PortfolioDetailsActivity extends AppCompatActivity implements Portf
         private void applyData(History history) {
 
         }
-
-
     }
 }

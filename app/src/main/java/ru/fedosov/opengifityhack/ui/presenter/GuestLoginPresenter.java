@@ -21,7 +21,7 @@ public class GuestLoginPresenter {
         this.mGuestLoginView = loginView;
     }
 
-    public void guestLogin(String name, String age, String imei) {
+    public void guestLogin(String name, String age, final String imei) {
         RestClient.getInstance().guestLogin(name, age, imei)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -38,7 +38,31 @@ public class GuestLoginPresenter {
 
                     @Override
                     public void onNext(Response<User> userResponse) {
-                        mGuestLoginView.onGuestLoginResult(userResponse.isSuccessful());
+                        getUser(imei);
+                    }
+                });
+    }
+
+    private void getUser(String imei) {
+        RestClient.getInstance().getUser(imei)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<User>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<User> userResponse) {
+                        if (userResponse.body() != null) {
+                            mGuestLoginView.onGuestLoginResult(userResponse.body().getId());
+                        } else mGuestLoginView.showError("Пользователь не найден");
                     }
                 });
     }
